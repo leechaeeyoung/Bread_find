@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+// DB와 상호작용
 public class BakeryRepository implements JpaRepository<Bakery, Long> {
     @Override
     public List<Bakery> findAll() {

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+// DB table과 매핑될 Entity 클래스
 @Entity
 public class Bakery {
     @Id
