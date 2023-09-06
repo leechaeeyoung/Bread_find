@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Kakao 지도 예제</title>
+    <title>장소 지도</title>
     <!-- Kakao 지도 API 스크립트 추가 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=appkey"></script>
     <style>
@@ -11,6 +11,7 @@
             width: 100%;
             height: 100vh; /* 화면 높이의 100%로 설정합니다. */
         }
+
     </style>
 </head>
 <body>
@@ -27,8 +28,68 @@
             level: 8, // 지도 확대 레벨 (0~14)
         };
         const map = new kakao.maps.Map(container, options);
+
+        // 장소 정보 배열 (DB에서 가져온 정보를 여기에 추가)
+        const places = [
+            {
+                name: "랜디스도넛 연남점",
+                lat: 126.924121466838 ,
+                lng: 37.5620216042174
+            },
+            {
+                name: "랜디스도넛 안국점",
+                lat: 126.98559247667,
+                lng: 37.5771346198438
+            },
+            {
+                name: "랜디스도넛 신사가로수길점",
+                lat: 127.024019640877,
+                lng: 37.519322724432
+            },
+            {
+                name: "랜디스도넛 대구동성로점",
+                lat: 128.598361295669,
+                lng: 35.8684574264574
+            },
+            {
+                "name": "랜디스도넛 제주애월점",
+                lat: 126.311418894475,
+                lng: 33.4611696789499
+            },
+            {
+                "name": "랜디스도넛 광안리점",
+                lat: 129.114456876843,
+                lng: 35.1504690450028
+            },
+            {
+                "name": "랜디스도넛 제주직영점 주차장",
+                lat: 126.311432957778,
+                lng: 33.4611867970053
+            },
+        ];
+
+        // 장소 정보를 지도에 표시
+        places.forEach((place) => {
+            const marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(place.lng, place.lat), // 위도와 경도 순서 바꿔줌
+                map: map,
+                title: place.name,
+            });
+
+            const infowindow = new kakao.maps.InfoWindow({
+                content: place.name,
+            });
+
+            kakao.maps.event.addListener(marker, 'mouseover', function () {
+                infowindow.open(map, marker);
+            });
+
+            kakao.maps.event.addListener(marker, 'mouseout', function () {
+                infowindow.close();
+            });
+        });
+
     });
 </script>
-
 </body>
 </html>
