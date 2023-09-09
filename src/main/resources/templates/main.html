@@ -7,224 +7,258 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8d2fde92b9a7957471f3ea0cc46a093"></script>
     <style>
         /* 지도를 보여줄 div의 스타일 지정 */
-        #map {
+        #map-container {
             width: 90%;
             height: 90vh; /* 화면 높이의 100%로 설정합니다. */
+            margin: 0 auto; /* 가로 여백을 0으로 설정하여 가운데로 배치합니다. */
+            position: relative; /* 필요에 따라 position 값을 조정합니다. */
+        }
+        /* 로그인 버튼 스타일 (이전 답변의 CSS 코드를 그대로 사용합니다) */
+        #loginButton {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        /* 버튼 위에 마우스를 올렸을 때 스타일 변경 (선택사항) */
+        #loginButton:hover {
+            background-color: #0056b3;
+        }
+
+        /* 지도 스타일 */
+        #map {
+            width: 100%;
+            height: 100%;
+            margin-top: 50px;
+            display: inline-block; /* 지도를 가운데 정렬하기 위해 필요한 스타일 */
         }
 
     </style>
 </head>
 <body>
-<!-- 지도를 보여줄 div 요소 -->
-<div id="map"></div>
+    <!-- 로그인 버튼 -->
+    <button id="loginButton">로그인</button>
+    <!-- 지도를 보여줄 div 요소 -->
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+    <!-- JavaScript 코드를 추가할 부분 -->
+    <script>
+        // Kakao 지도 API 초기화
+        kakao.maps.load(() => {
+            const container = document.getElementById('map');
+            const options = {
+                center: new kakao.maps.LatLng(36.5, 127.5), // 전국 중심 좌표
+                level: 8, // 지도 확대 레벨 (0~14)
+            };
+            const map = new kakao.maps.Map(container, options);
 
-<!-- JavaScript 코드를 추가할 부분 -->
-<script>
-    // Kakao 지도 API 초기화
-    kakao.maps.load(() => {
-        const container = document.getElementById('map');
-        const options = {
-            center: new kakao.maps.LatLng(36.5, 127.5), // 전국 중심 좌표
-            level: 8, // 지도 확대 레벨 (0~14)
-        };
-        const map = new kakao.maps.Map(container, options);
+            // 장소 정보 배열 (DB에서 가져온 정보를 여기에 추가)
+            const places = [
+                {
+                    name: "랜디스도넛 연남점",
+                    lat: 126.924121466838 ,
+                    lng: 37.5620216042174
+                },
+                {
+                    name: "랜디스도넛 안국점",
+                    lat: 126.98559247667,
+                    lng: 37.5771346198438
+                },
+                {
+                    name: "랜디스도넛 신사가로수길점",
+                    lat: 127.024019640877,
+                    lng: 37.519322724432
+                },
+                {
+                    name: "랜디스도넛 대구동성로점",
+                    lat: 128.598361295669,
+                    lng: 35.8684574264574
+                },
+                {
+                    "name": "랜디스도넛 제주애월점",
+                    lat: 126.311418894475,
+                    lng: 33.4611696789499
+                },
+                {
+                    "name": "랜디스도넛 광안리점",
+                    lat: 129.114456876843,
+                    lng: 35.1504690450028
+                },
+                {
+                    "name": "랜디스도넛 제주직영점 주차장",
+                    lat: 126.311432957778,
+                    lng: 33.4611867970053
+                },
+                {
+                    "name": "하얀풍차제과 망포역점",
+                    lat: 127.055799794469,
+                    lng: 37.2451815599677
+                },
+                {
+                    "name": "하얀풍차제과 곡반점",
+                    lat: 127.034165232558,
+                    lng: 37.2417399462448
+                },
+                {
+                    "name": "하얀풍차제과 동탄역점",
+                    lat: 127.098239696428,
+                    lng: 37.1979517309026
+                },
+                {
+                    "name": "하얀풍차제과점",
+                    lat: 127.56983773171,
+                    lng: 36.3027336116402
+                },
+                {
+                    "name": "하얀풍차제과점",
+                    lat: 128.202397304157,
+                    lng: 36.5984645923091
+                },
+                {
+                    "name": "태극당",
+                    lat: 127.005087759017,
+                    lng: 37.5595217348788
+                },
+                {
+                    "name": "태극당 서울역점",
+                    lat: 126.969526329341,
+                    lng: 37.5547278494914
+                },
+                {
+                    "name": "태극당빌딩 주차장",
+                    lat: 127.018628667583,
+                    lng: 37.5935936406348
+                },
+                {
+                    "name": "태극당 서울역광장점",
+                    lat: 126.969526329341,
+                    lng: 37.5547278494914
+                },
+                {
+                    "name": "태극당 더현대서울점",
+                    lat: 126.929112756574,
+                    lng: 37.5251913154781
+                },
+                {
+                    "name": "태극당 인사동점",
+                    lat: 126.985935398213,
+                    lng: 37.5734166168629
+                },
+                {
+                    "name": "블랑제리 오봉베르",
+                    lat: 127.053914597939,
+                    lng: 37.2936598034326
+                },
+                {
+                    "name": "오봉베르 1호점",
+                    lat: 127.055135613746,
+                    lng: 37.2938958534041
+                },
+                {
+                    "name": "안스베이커리 일산점",
+                    lat: 126.754526582068,
+                    lng: 37.6645540981816
+                },
+                {
+                    "name": "안스베이커리 롯데김포공항점",
+                    lat: 126.80296035927,
+                    lng: 37.5713698504776
+                },
+                {
+                    "name": "안스베이커리 구월본점",
+                    lat: 126.710812562629,
+                    lng: 37.4491699687774
+                },
+                {
+                    "name": "안스베이커리 롯데은평점",
+                    lat: 126.917900261732,
+                    lng: 37.6375366740938
+                },
+                {
+                    "name": "안스베이커리 롯데중동점",
+                    lat: 126.775312407757,
+                    lng: 37.5025416520547
+                },
+                {
+                    "name": "안스베이커리 인천앨리웨이점",
+                    lat: 126.663261879268,
+                    lng: 37.4694745961039
+                },
+                {
+                    "name": "안스베이커리 롯데영등포점",
+                    lat: 126.907665995469,
+                    lng: 37.5156680341198
+                },
+                {
+                    "name": "안스베이커리 연수점",
+                    lat: 126.673868283347,
+                    lng: 37.4163307304227
+                },
+                {
+                    "name": "안스베이커리 송도점",
+                    lat: 126.642840131926,
+                    lng: 37.3931532485555
+                },
+                {
+                    "name": "안스베이커리 스타필드 하남점",
+                    lat: 127.223940331575,
+                    lng: 37.5454041231797
+                },
+                {
+                    "name": "안스베이커리 스타필드안성점",
+                    lat: 127.147249620616,
+                    lng: 36.9946334108693
+                },
+                {
+                    "name": "안스베이커리",
+                    lat: 126.677813584749,
+                    lng: 37.3993567574947
+                },
+                {
+                    "name": "샹끄발레르",
+                    lat: 126.644725693455,
+                    lng: 37.3929624166906
+                },
+                {
+                    "name": "샹끄발레르",
+                    lat: 126.657469290758,
+                    lng: 37.4162096605811
+                }
+            ];
 
-        // 장소 정보 배열 (DB에서 가져온 정보를 여기에 추가)
-        const places = [
-            {
-                name: "랜디스도넛 연남점",
-                lat: 126.924121466838 ,
-                lng: 37.5620216042174
-            },
-            {
-                name: "랜디스도넛 안국점",
-                lat: 126.98559247667,
-                lng: 37.5771346198438
-            },
-            {
-                name: "랜디스도넛 신사가로수길점",
-                lat: 127.024019640877,
-                lng: 37.519322724432
-            },
-            {
-                name: "랜디스도넛 대구동성로점",
-                lat: 128.598361295669,
-                lng: 35.8684574264574
-            },
-            {
-                "name": "랜디스도넛 제주애월점",
-                lat: 126.311418894475,
-                lng: 33.4611696789499
-            },
-            {
-                "name": "랜디스도넛 광안리점",
-                lat: 129.114456876843,
-                lng: 35.1504690450028
-            },
-            {
-                "name": "랜디스도넛 제주직영점 주차장",
-                lat: 126.311432957778,
-                lng: 33.4611867970053
-            },
-            {
-                "name": "하얀풍차제과 망포역점",
-                lat: 127.055799794469,
-                lng: 37.2451815599677
-            },
-            {
-                "name": "하얀풍차제과 곡반점",
-                lat: 127.034165232558,
-                lng: 37.2417399462448
-            },
-            {
-                "name": "하얀풍차제과 동탄역점",
-                lat: 127.098239696428,
-                lng: 37.1979517309026
-            },
-            {
-                "name": "하얀풍차제과점",
-                lat: 127.56983773171,
-                lng: 36.3027336116402
-            },
-            {
-                "name": "하얀풍차제과점",
-                lat: 128.202397304157,
-                lng: 36.5984645923091
-            },
-            {
-                "name": "태극당",
-                lat: 127.005087759017,
-                lng: 37.5595217348788
-            },
-            {
-                "name": "태극당 서울역점",
-                lat: 126.969526329341,
-                lng: 37.5547278494914
-            },
-            {
-                "name": "태극당빌딩 주차장",
-                lat: 127.018628667583,
-                lng: 37.5935936406348
-            },
-            {
-                "name": "태극당 서울역광장점",
-                lat: 126.969526329341,
-                lng: 37.5547278494914
-            },
-            {
-                "name": "태극당 더현대서울점",
-                lat: 126.929112756574,
-                lng: 37.5251913154781
-            },
-            {
-                "name": "태극당 인사동점",
-                lat: 126.985935398213,
-                lng: 37.5734166168629
-            },
-            {
-                "name": "블랑제리 오봉베르",
-                lat: 127.053914597939,
-                lng: 37.2936598034326
-            },
-            {
-                "name": "오봉베르 1호점",
-                lat: 127.055135613746,
-                lng: 37.2938958534041
-            },
-            {
-                "name": "안스베이커리 일산점",
-                lat: 126.754526582068,
-                lng: 37.6645540981816
-            },
-            {
-                "name": "안스베이커리 롯데김포공항점",
-                lat: 126.80296035927,
-                lng: 37.5713698504776
-            },
-            {
-                "name": "안스베이커리 구월본점",
-                lat: 126.710812562629,
-                lng: 37.4491699687774
-            },
-            {
-                "name": "안스베이커리 롯데은평점",
-                lat: 126.917900261732,
-                lng: 37.6375366740938
-            },
-            {
-                "name": "안스베이커리 롯데중동점",
-                lat: 126.775312407757,
-                lng: 37.5025416520547
-            },
-            {
-                "name": "안스베이커리 인천앨리웨이점",
-                lat: 126.663261879268,
-                lng: 37.4694745961039
-            },
-            {
-                "name": "안스베이커리 롯데영등포점",
-                lat: 126.907665995469,
-                lng: 37.5156680341198
-            },
-            {
-                "name": "안스베이커리 연수점",
-                lat: 126.673868283347,
-                lng: 37.4163307304227
-            },
-            {
-                "name": "안스베이커리 송도점",
-                lat: 126.642840131926,
-                lng: 37.3931532485555
-            },
-            {
-                "name": "안스베이커리 스타필드 하남점",
-                lat: 127.223940331575,
-                lng: 37.5454041231797
-            },
-            {
-                "name": "안스베이커리 스타필드안성점",
-                lat: 127.147249620616,
-                lng: 36.9946334108693
-            },
-            {
-                "name": "안스베이커리",
-                lat: 126.677813584749,
-                lng: 37.3993567574947
-            },
-            {
-                "name": "샹끄발레르",
-                lat: 126.644725693455,
-                lng: 37.3929624166906
-            },
-            {
-                "name": "샹끄발레르",
-                lat: 126.657469290758,
-                lng: 37.4162096605811
-            }
-        ];
+            // 장소 정보를 지도에 표시
+            places.forEach((place) => {
+                const marker = new kakao.maps.Marker({
+                    position: new kakao.maps.LatLng(place.lng, place.lat), // 위도와 경도 순서 바꿔줌
+                    map: map,
+                    title: place.name,
+                });
 
-        // 장소 정보를 지도에 표시
-        places.forEach((place) => {
-            const marker = new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(place.lng, place.lat), // 위도와 경도 순서 바꿔줌
-                map: map,
-                title: place.name,
+                const infowindow = new kakao.maps.InfoWindow({
+                    content: place.name,
+                });
+
+                kakao.maps.event.addListener(marker, 'mouseover', function () {
+                    infowindow.open(map, marker);
+                });
+
+                kakao.maps.event.addListener(marker, 'mouseout', function () {
+                    infowindow.close();
+                });
             });
-
-            const infowindow = new kakao.maps.InfoWindow({
-                content: place.name,
-            });
-
-            kakao.maps.event.addListener(marker, 'mouseover', function () {
-                infowindow.open(map, marker);
-            });
-
-            kakao.maps.event.addListener(marker, 'mouseout', function () {
-                infowindow.close();
+            // 로그인 버튼 클릭 이벤트 처리
+            const loginButton = document.getElementById('loginButton');
+            loginButton.addEventListener('click', function () {
+                // 로그인 버튼을 클릭했을 때 수행할 동작을 여기에 추가
+                // 예를 들어, 로그인 팝업을 표시하거나 로그인 페이지로 이동하는 등의 동작을 수행할 수 있습니다.
             });
         });
-
-    });
-</script>
+    </script>
 </body>
 </html>

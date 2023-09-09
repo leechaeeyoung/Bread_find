@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// 로작 처리(데이터 조작 및 가공)
+// 빵집과 관련된 비지니스 로직 처리하는 서비스
 @Service
 public class BakeryService {
     private final BakeryRepository bakeryRepository;

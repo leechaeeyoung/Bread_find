@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-// DB와 상호작용
+// spring data JPA 확장한 사용자 지정 레포지
+// DB에서 빵집 데이터와 상호작용하는 메소드 정의
 public class BakeryRepository implements JpaRepository<Bakery, Long> {
     @Override
     public List<Bakery> findAll() {

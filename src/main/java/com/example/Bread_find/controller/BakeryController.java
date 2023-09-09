@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+// HTTP 요청 처리 spring REST Controller, 빵집과 관련된 요청 처리
+// /api/bakeries 엔드포인트에 매핑
 @RestController
 @RequestMapping("/api/bakeries")
 public class BakeryController {
