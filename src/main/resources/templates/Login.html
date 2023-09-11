@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <style>
+        /* 로그인 폼 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #login-form {
+            width: 300px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #login-form h2 {
+            text-align: center;
+        }
+
+        #login-form input[type="text"],
+        #login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        #login-form .divider {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        #login-form .divider hr {
+            border: none;
+            height: 1px;
+            background-color: #ccc;
+        }
+
+        #login-form .social-buttons {
+            text-align: center;
+        }
+
+        #login-form .social-buttons button {
+            margin: 5px;
+            padding: 10px;
+            width: 45%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-form .social-buttons button.kakao {
+            background-color: #fee500;
+            color: #000;
+        }
+
+        #login-form .social-buttons button.kakao:hover {
+            background-color: #ffd300;
+        }
+
+        #login-form .social-buttons button.signup {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        #login-form .social-buttons button.signup:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div id="login-form">
+  <h2>로그인</h2>
+  <input type="text" placeholder="아이디">
+  <input type="password" placeholder="비밀번호">
+  <button id="submit-button">로그인</button>
+  <div class="divider">
+  </div>
+  <div class="social-buttons">
+    <button class="kakao">카카오 로그인</button>
+    <button class="signup">회원가입</button>
+  </div>
+</div>
+
+<!-- JavaScript 코드를 추가할 부분 -->
+<script>
+        // 로그인 버튼 클릭 이벤트 처리
+        const submitButton = document.getElementById('submit-button');
+        submitButton.addEventListener('click', function () {
+            // 일반 로그인 처리 코드를 여기에 추가
+        });
+
+        // 카카오 로그인 버튼 클릭 이벤트 처리
+        const kakaoLoginButton = document.querySelector('.kakao');
+        kakaoLoginButton.addEventListener('click', function () {
+            // 카카오 로그인 팝업 열기
+            // Kakao.Auth.login({ ... }) 등의 코드를 사용하여 카카오 로그인 처리를 수행합니다.
+        });
+
+        // 회원가입 버튼 클릭 이벤트 처리
+        const signupButton = document.querySelector('.signup');
+        signupButton.addEventListener('click', function () {
+            // 회원가입 페이지로 이동 또는 회원가입 팝업을 표시하는 코드를 여기에 추가
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <style>
+        /* 회원가입 폼 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #signup-form {
+            width: 300px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #signup-form h2 {
+            text-align: center;
+        }
+
+        #signup-form input[type="text"],
+        #signup-form input[type="password"],
+        #signup-form input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #signup-form .check-username {
+            display: flex;
+            align-items: center;
+        }
+
+        #signup-form .check-username button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px; /* 작게 만들기 위해 폰트 크기 설정 */
+        }
+
+        #signup-form .check-username button:hover {
+            background-color: #0056b3;
+        }
+
+        #signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #signup-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 추가 스타일링을 원하시면 이곳에 추가하십시오. */
+
+    </style>
+</head>
+<body>
+<div id="signup-form">
+    <h2>회원가입</h2>
+    <input type="text" placeholder="사용자 이름">
+    <div class="check-username">
+        <input type="text" placeholder="아이디">
+        <button id="check-username-button">중복확인</button>
+    </div>
+    <input type="password" placeholder="비밀번호">
+    <input type="tel" placeholder="전화번호">
+    <button id="submit-signup">완료</button>
+</div>
+
+<!-- JavaScript 코드를 추가할 부분 -->
+<script>
+    // 아이디 중복확인 버튼 클릭 이벤트 처리
+    const checkUsernameButton = document.getElementById('check-username-button');
+    checkUsernameButton.addEventListener('click', function () {
+        // 아이디 중복확인 기능 구현 코드를 여기에 추가
+    });
+
+    // 회원가입 완료 버튼 클릭 이벤트 처리
+    const submitSignupButton = document.getElementById('submit-signup');
+    submitSignupButton.addEventListener('click', function () {
+        // 회원가입 정보를 서버로 전송하는 코드를 여기에 추가
+    });
+</script>
+</body>
+</html>

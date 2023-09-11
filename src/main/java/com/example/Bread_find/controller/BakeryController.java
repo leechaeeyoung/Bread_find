@@ -1,14 +1,9 @@
 package com.example.Bread_find.controller;
 
-import com.example.Bread_find.entity.Bakery;
-import com.example.Bread_find.repository.BakeryRepository;
 import com.example.Bread_find.service.BakeryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 
 // HTTP 요청 처리 spring REST Controller, 빵집과 관련된 요청 처리

@@ -1,13 +1,11 @@
 package com.example.Bread_find.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // JPA Entity Class
 // 데이터 베이스 테이블과 매핑되는 클래스
 @Entity
+@Table(name="HotPlace")
 public class Bakery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
