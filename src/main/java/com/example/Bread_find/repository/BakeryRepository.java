@@ -17,5 +17,5 @@ import java.util.function.Function;
 // DB에서 빵집 데이터와 상호작용하는 메소드 정의
 @Repository
 public interface BakeryRepository extends JpaRepository<Bakery, Long> {
-    Optional<Bakery> findByBakeryName(String name);
+    Optional<Bakery> findByName(String name);
 }

@@ -16,12 +16,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
     public User registerUser(User user){
-        // id 중복 확인 로직
-        Optional<User> existUser = userRepository.findByUserId(user.getId());
-        if(existUser.isPresent()){
-            throw new IllegalArgumentException("이미 존재하는 아이디 입니다.");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        // 아무 작업도 수행하지 않도록 빈 메서드
+        return user;
     }
+//    public User registerUser(User user){
+//        // id 중복 확인 로직
+//        Optional<User> existUser = userRepository.findByUser_id(user.getUser_id());
+//        if(existUser.isPresent()) {
+//            throw new IllegalArgumentException("이미 존재하는 아이디 입니다.");
+//        }
+//        return userRepository.save(user);
+//    }
 }

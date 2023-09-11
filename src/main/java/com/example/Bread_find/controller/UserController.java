@@ -19,10 +19,20 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user){
         try {
-            User registeredUser = userService.registerUser(user);
-            return ResponseEntity.ok(registeredUser);
+            // 주석 처리된 코드 대신 userService.registerUser 메서드를 호출하지 않도록 수정
+            return ResponseEntity.ok(user);
         } catch (IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @PostMapping("/register")
+//    public ResponseEntity<?> registerUser(@RequestBody User user){
+//        try {
+//            User registeredUser = userService.registerUser(user);
+//            return ResponseEntity.ok(registeredUser);
+//        } catch (IllegalArgumentException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 }

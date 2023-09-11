@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUserId(String id);
+    Optional<User> findByUser_id(String user_id); // 메서드 이름 변경
 }
+
