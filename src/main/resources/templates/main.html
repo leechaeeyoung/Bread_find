@@ -41,14 +41,14 @@
     </style>
 </head>
 <body>
-    <!-- 로그인 버튼 -->
-    <button id="loginButton">로그인</button>
-    <!-- 지도를 보여줄 div 요소 -->
-    <div id="map-container">
-        <div id="map"></div>
-    </div>
-    <!-- JavaScript 코드를 추가할 부분 -->
-    <script>
+<!-- 로그인 버튼 -->
+<button id="loginButton">로그인</button>
+<!-- 지도를 보여줄 div 요소 -->
+<div id="map-container">
+    <div id="map"></div>
+</div>
+<!-- JavaScript 코드를 추가할 부분 -->
+<script>
         // Kakao 지도 API 초기화
         kakao.maps.load(() => {
             const container = document.getElementById('map');
@@ -256,7 +256,7 @@
             const loginButton = document.getElementById('loginButton');
             loginButton.addEventListener('click', function () {
                 // 로그인 페이지로 이동
-                window.location.href = 'login.html';
+                window.location.href = 'kakaoLogin.html';
             });
         });
     </script>
