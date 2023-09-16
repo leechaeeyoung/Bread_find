@@ -1,9 +1,9 @@
 server:
-  port: 63342
+  port: 8080
 # 모든 경로를 인증없이 접근 가능하도록 설정
-security:
-  basic:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
 # OAuth2 클라이언트 ID 및 시크릿 설정
 spring:
   datasource:
@@ -11,18 +11,3 @@ spring:
     password: 1397
     url: jdbc:mysql://localhost:3306/Bread_place
     username: root
-  security:
-    oauth2:
-      client:
-        registration:
-          kakao:
-            client-id: be6762818d54501d1faac1c39fb5c54d
-            client-secret: RrmiIo9c5Wl1i9v4eujJKj2RmATQb0Q9
-            redirect-uri: http://localhost:63342
-            authorization-grant-type: authorization_code
-        provider:
-          kakao:
-            authorization-uri: https://kauth.kakao.com/oauth/authorize
-            token-uri: https://kauth.kakao.com/oauth/token
-            user-info-uri: https://kapi.kakao.com/v2/user/me
-            user-name-attribute: id
