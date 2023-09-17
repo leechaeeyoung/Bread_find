@@ -1,60 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>장소 지도</title>
     <!-- Kakao 지도 API 스크립트 추가 -->
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=be6762818d54501d1faac1c39fb5c54d"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b8d2fde92b9a7957471f3ea0cc46a093"></script>
     <style>
-        /* 지도를 보여줄 div의 스타일 지정 */
-        #map-container {
-            width: 90%;
-            height: 90vh; /* 화면 높이의 100%로 설정합니다. */
-            margin: 0 auto; /* 가로 여백을 0으로 설정하여 가운데로 배치합니다. */
-            position: relative; /* 필요에 따라 position 값을 조정합니다. */
-        }
-        /* 로그인 버튼 스타일 (이전 답변의 CSS 코드를 그대로 사용합니다) */
+        /* 스타일 설정 */
         #loginButton {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
             position: absolute;
             top: 10px;
             right: 10px;
         }
-        /* 버튼 위에 마우스를 올렸을 때 스타일 변경 (선택사항) */
-        #loginButton:hover {
-            background-color: #0056b3;
-        }
+        /* 추가 스타일 생략 */
 
-        /* 지도 스타일 */
+        /* 지도 스타일 설정 */
         #map {
             width: 100%;
-            height: 100%;
+            height: 400px;
             margin-top: 50px;
-            display: inline-block; /* 지도를 가운데 정렬하기 위해 필요한 스타일 */
+            display: inline-block;
         }
-
     </style>
 </head>
 <body>
-<!-- 로그인 버튼 -->
-<button id="loginButton">로그인</button>
+<!-- 로그인 버튼 이미지 -->
+<img id="loginButton" src="static/image/kakao_login_medium_narrow.png" alt="카카오 로그인">
+
 <!-- 지도를 보여줄 div 요소 -->
-<div id="map-container">
-    <div id="map"></div>
-</div>
-<!-- JavaScript 코드를 추가할 부분 -->
+<div id="map"></div>
+
+<!-- JavaScript 코드 -->
 <script>
+        // 클릭 이벤트 처리 - 바로 카카오 로그인 페이지로 이동
+        function redirectToKakaoLoginPage() {
+            window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=be6762818d54501d1faac1c39fb5c54d&redirect_uri=http://localhost:8080/member/kakao&response_type=code";
+        }
+
         // Kakao 지도 API 초기화
         kakao.maps.load(() => {
             const container = document.getElementById('map');
             const options = {
-                center: new kakao.maps.LatLng(36.5, 127.5), // 전국 중심 좌표
-                level: 8, // 지도 확대 레벨 (0~14)
+                center: new kakao.maps.LatLng(36.5, 127.5),
+                level: 8
             };
             const map = new kakao.maps.Map(container, options);
 
@@ -232,32 +221,9 @@
                 }
             ];
 
-            // 장소 정보를 지도에 표시
-            places.forEach((place) => {
-                const marker = new kakao.maps.Marker({
-                    position: new kakao.maps.LatLng(place.lng, place.lat), // 위도와 경도 순서 바꿔줌
-                    map: map,
-                    title: place.name,
-                });
-
-                const infowindow = new kakao.maps.InfoWindow({
-                    content: place.name,
-                });
-
-                kakao.maps.event.addListener(marker, 'mouseover', function () {
-                    infowindow.open(map, marker);
-                });
-
-                kakao.maps.event.addListener(marker, 'mouseout', function () {
-                    infowindow.close();
-                });
-            });
-            // 로그인 버튼 클릭 이벤트 처리
+            // 로그인 버튼 클릭 이벤트 설정
             const loginButton = document.getElementById('loginButton');
-            loginButton.addEventListener('click', function () {
-                // 로그인 페이지로 이동
-                window.location.href = 'kakaoLogin.html';
-            });
+            loginButton.addEventListener('click', redirectToKakaoLoginPage);
         });
     </script>
 </body>
