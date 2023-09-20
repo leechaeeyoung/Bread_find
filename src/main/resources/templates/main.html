@@ -48,6 +48,14 @@
         function redirectToKakaoLoginPage() {
             window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=be6762818d54501d1faac1c39fb5c54d&redirect_uri=http://localhost:8080/member/kakao&response_type=code";
         }
+        // 카카오 로그인 후 메인 화면으로 리다이렉션
+        function handleKakaoLogin() {
+            alert('로그인이 완료되었습니다. 메인 화면으로 이동합니다.');
+            window.location.href = 'http://localhost:8080/main';  // 실제 메인 화면 주소로 수정
+        }
+        // 로그인 버튼 클릭 이벤트 설정
+            const loginButton = document.getElementById('loginButton');
+            loginButton.addEventListener('click', redirectToKakaoLoginPage);
 
         // Kakao 지도 API 초기화
         kakao.maps.load(() => {
@@ -251,10 +259,6 @@
                     infowindow.close();
                 });
             });
-
-            // 로그인 버튼 클릭 이벤트 설정
-            const loginButton = document.getElementById('loginButton');
-            loginButton.addEventListener('click', redirectToKakaoLoginPage);
         });
     </script>
 </body>

@@ -7,9 +7,14 @@ server:
 # OAuth2 클라이언트 ID 및 시크릿 설정
 spring:
   datasource:
+    url: jdbc:mysql://localhost:3306/Bread_place?useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 1397
-    url: jdbc:mysql://localhost:3306/Bread_place
     username: root
+    password: 1397
+  h2:
+    console:
+      enabled: true
+
+
 
 
