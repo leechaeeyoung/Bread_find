@@ -19,6 +19,6 @@ public class KakaoController {
 
     @GetMapping("/member/kakao")
     public @ResponseBody String kakaoCallback(@RequestParam String code){
-        return "카카오 인증 완료"+code;
+        return "카카오 인증 완료 : "+code;
     }
 }
