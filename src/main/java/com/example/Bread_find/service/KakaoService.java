@@ -10,7 +10,8 @@ import java.net.URL;
 
 @Service
 public class KakaoService {
-    public String getAccessToken(String code){
+
+    public String getAccessToken (String authorize_code) {
         String access_Token = "";
         String refresh_Token = "";
         String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -19,25 +20,25 @@ public class KakaoService {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // POST 요청 위해 기본값 false인 setDoOutput을 true로
+            //    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
 
-            // POST요청에 필요로 하는 파라미터 스트림 통해 전송
+            //    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=be6762818d54501d1faac1c39fb5c54d");
-            sb.append("&redirect_uri=http://localhost:9000/member/kakao");
-            sb.append("&code=" + code);
+            sb.append("&redirect_uri=http://localhost:8080/member/kakao");
+            sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
 
-            // 결과 코드 200이라면 성공
+            //    결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : "+responseCode);
+            System.out.println("responseCode : " + responseCode);
 
-            // 요청을 통해 얻은 JSON 타입의 Response 메세지 읽어 오기
+            //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             String result = "";
@@ -45,9 +46,9 @@ public class KakaoService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println("response body : "+result);
+            System.out.println("response body : " + result);
 
-            //Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+            //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
@@ -60,8 +61,11 @@ public class KakaoService {
             br.close();
             bw.close();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         return access_Token;
     }
 }
+
